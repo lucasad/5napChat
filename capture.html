@@ -1,0 +1,27 @@
+<!doctype htm>
+<html>
+  <head>
+    <title>Take Photo</title>
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="webcam" />
+    <script src="js/jquery.js"></script>
+    <script src="js/photobooth.js"></script>
+    <script>
+      var pb = new Photobooth(document.getElementById("webcam"));
+      pb.onImage = function(dataUrl ){
+        var cont = window.opener.document.getElementById("newSnap");
+        var image = window.opener.document.getElementById("newImg");
+        if(image == null)
+        {
+          image = window.opener.document.createElement("img");
+          image.id = "newImg";
+          cont.appendChild(image);
+        }
+       image.src = dataUrl;
+       window.close();
+      };
+    </script>
+  </body>
+</html>

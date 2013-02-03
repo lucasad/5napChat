@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  
+  <head>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <link rel="stylesheet" href="https://app.divshot.com/themes/readable/bootstrap.min.css">
+    <link rel="stylesheet" href="https://app.divshot.com/css/bootstrap-responsive.css"> 
+  </head>
+  
+  <body>
+    <div class="container">
+      <div class="hero-unit">
+        <h1 class="page-header">5nap Chat</h1>
+        <p>A SnapChat client using WebRTC</p>
+        <p></p>
+        <h2>Welome <span id="user">user</span></h2>
+      </div>
+      <div class="row">
+        <div class="span4">
+          <ul class="nav nav-stacked nav-tabs">
+            <li class="active">
+              <a href="#">Home</a> 
+            </li>
+            <li>
+              <a href="#">About</a> 
+            </li>
+          </ul>
+        </div>
+        <div class="span8">
+          <div class="well">
+            <ul class="nav nav-tabs">
+              <li class="active">
+                <a href="#view" data-toggle="tab">View Photo</a> 
+              </li>
+              <li>
+                <a href="#capture" data-toggle="tab">Take Photo</a> 
+              </li>
+            </ul>
+            <div class="well tab-content">
+              <div class="tab-pane active" id="view">
+                <img src="http://placehold.it/640x480"> 
+              </div>
+              <div class="tab-pane" id="capture">
+              <div id="webcam"></div>
+              <form>
+                <div class="control-group">
+                  <label class="control-label">Friends</label>
+                  <div class="controls">
+                    <label class="checkbox inline" for="checkbox">
+                      <input type="checkbox" value="true" id="checkbox" name="checkbox">
+                      <span>Anna</span>
+                    </label>
+                    <label class="checkbox inline" for="checkbox">
+                      <input type="checkbox" value="true" id="checkbox" name="checkbox">
+                      <span>Joe</span>
+                    </label>
+                  </div>
+                </div>
+              </form>
+              <a class="btn btn-primary btn-block">Send</a> 
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://app.divshot.com/js/jquery.min.js"></script>
+    <script src="https://app.divshot.com/js/bootstrap.min.js"></script>
+  </body>
+
+</html>

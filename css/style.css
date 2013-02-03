@@ -1,0 +1,54 @@
+#tabs
+{
+  min-width: 640px;
+}
+#views
+{
+  margin-bottom: 0;
+}
+
+#view
+{
+  min-height: 480px;
+  vertical-align: middle;
+}
+#image
+{
+  margin: auto;
+  display: block;
+}
+#bar
+{
+  position: relative;
+  top: 100px;
+}
+
+
+.r16-9 { padding-bottom: 56.25% }
+.r4-3 { padding-bottom: 75% }
+.r3-2 { padding-bottom: 66.66% }
+.r8-5 { padding-bottom: 62.5% }
+
+.r16-9.portrait { padding-bottom: 177.77% }
+.r4-3.portrait { padding-bottom: 133.33% }
+.r3-2.portrait { padding-bottom: 150% }
+.r8-5.portrait { padding-bottom: 160% }
+
+div.stretch {
+  width: 100%;
+  position: relative;
+}
+
+div.stretch > div {
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+
+  color: white;
+  font-size: 24px;
+  text-align: center;
+}
+
+.photobooth ul
+{
+  list-style-type: none;
+}
