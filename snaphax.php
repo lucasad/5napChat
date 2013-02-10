@@ -196,7 +196,7 @@ ini_set('display_errors',1);
 
 		function isValidBlobHeader($header) {
 			if (($header[0] == chr(00) && // mp4
-					 $header[0] == chr(00)) || 
+					 $header[0] == chr(00)) ||
 					($header[0] == chr(0xFF) && // jpg
 					 $header[1] == chr(0xD8)))
 				return true;
@@ -204,12 +204,22 @@ ini_set('display_errors',1);
 				return false;
 		}
 
+		function pkcs5pad($data) {
+			// Block size is 16 bytes
+			$needed_padding = 16 - strlen($data) % 16;
+			if ($needed_padding == 0) {
+				$needed_padding = 16;
+			}
+			return $data . str_repeat(chr($needed_padding), $needed_padding);
+		}
+
 		function decrypt($data) {
-			return mcrypt_decrypt('rijndael-128', $this->options['blob_enc_key'], $data, 'ecb');
+			return mcrypt_decrypt('rijndael-128', $this->options['blob_enc_key'], $this->pkcs5pad($data), 'ecb');
+
 		}
 
 		function encrypt($data) {
-			return mcrypt_encrypt('rijndael-128', $this->options['blob_enc_key'], $data, 'ecb');
+			return mcrypt_encrypt('rijndael-128', $this->options['blob_enc_key'], $this->pkcs5pad($data), 'ecb');
 		}
 
 		public function postCall($endpoint, $post_data, $param1, $param2, $json=1, $headers=false) {
@@ -219,14 +229,6 @@ ini_set('display_errors',1);
 			curl_setopt($ch,CURLOPT_URL, $this->options['url'].$endpoint);
 			curl_setopt($ch,CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch,CURLOPT_USERAGENT, $this->options['user_agent']);
-
-/*
-curl_setopt($ch, CURLOPT_PROXYPORT, 8888);
-curl_setopt($ch, CURLOPT_PROXYTYPE, 'HTTP');
-curl_setopt($ch, CURLOPT_PROXY, '10.0.0.2');
-
-curl_setopt( $ch , CURLOPT_SSL_VERIFYPEER , false );
-curl_setopt( $ch , CURLOPT_SSL_VERIFYHOST , false ); */
 
 			if ($headers && is_array($headers)) {
 				curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
