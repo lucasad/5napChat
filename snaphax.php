@@ -79,6 +79,30 @@ ini_set('display_errors',1);
 			}
 			return $out;
 		}
+		function friend($action, $friend, $display=NULL) {
+			if (!$this->auth_token) {
+				throw new Exception('no auth token');
+			}
+			$ts = $this->api->time();
+			$url = "/ph/friend";
+			$request = array(
+				'timestamp' => $ts,
+				'action' => $action,
+				'username' => $this->options['username'],
+				'friend' => $friend
+			);
+			if($action == 'display') {
+				if(is_null($display)) {
+					throw new Exception('Please specify the displayname');
+				}
+				$request['display'] = $display;
+			}
+
+			$result = $this->api->postCall($url, $request, $this->auth_token, $ts);
+			$this->api->debug('modified user', $result);
+
+			return $result;
+		}
 		function fetch($id) {
 			if (!$this->auth_token) {
 				throw new Exception('no auth token');

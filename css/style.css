@@ -52,3 +52,5 @@ div.stretch > div {
 {
   list-style-type: none;
 }
+
+.hbtn { display: block; width: 100%; text-align: left }

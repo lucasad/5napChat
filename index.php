@@ -19,7 +19,7 @@ if(!isset($_SESSION['u']))
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-responsive.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
   </head>
-  
+<? flush(); ?>
   <body>
     <div class="container container-fluid">
       <div class="hero-unit">
@@ -31,7 +31,16 @@ if(!isset($_SESSION['u']))
       <div class="row-fluid">
         <div class="span4">
           <div class="well">
-            <ul class="nav nav-list" id="snaps"></ul>
+            <ul class="nav nav-list" id="friends">
+              <li class="nav-header">Friends <button class="btn btn-primary pull-right" onclick="addUser(this)"><b class="icon-plus"></b></button></li>              <li class="divider"></li>
+            </ul>
+          </div>
+
+          <div class="well">
+            <ul class="nav nav-list" id="snaps">
+              <li class="nav-header">Snaps</li>
+              <li class="divider"></li>
+            </ul>
           </div>
         </div>
         <div class="span8">
@@ -67,6 +76,8 @@ if(!isset($_SESSION['u']))
         </div>
       </div>
     </div>
+
+<? flush(); ?>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
     <script src="scripts/photobooth.js"></script>
@@ -86,5 +97,6 @@ if(!isset($_SESSION['u']))
     <script src="scripts/newsnap.js"></script>
     <script src="snaps.php?callback=writeSnaps"></script>
     <script src="friends.php?callback=writeFriends"></script>
+
   </body>
 </html>
