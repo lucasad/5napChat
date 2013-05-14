@@ -22,17 +22,20 @@ if(!isset($_SESSION['u']))
 <? flush(); ?>
   <body>
     <div class="container container-fluid">
-      <div class="hero-unit">
+<!--      <div class="hero-unit">
         <h1 class="page-header">5nap Chat</h1>
         <p>A SnapChat client using WebRTC</p>
-        <p></p>
+      </div>-->
+      <div class="well">
+        <a href="/logout.php" class="btn btn-danger pull-right">Logout</a>
         <h2>Welome <?=$_SESSION['u']?></h2>
       </div>
       <div class="row-fluid">
         <div class="span4">
           <div class="well">
             <ul class="nav nav-list" id="friends">
-              <li class="nav-header">Friends <button class="btn btn-primary pull-right" onclick="addUser(this)"><b class="icon-plus"></b></button></li>              <li class="divider"></li>
+              <li class="nav-header">Friends <button class="btn btn-primary pull-right" onclick="addUser(this)"><b class="icon-plus"></b></button></li>
+              <li class="divider"></li>
             </ul>
           </div>
 
@@ -61,6 +64,10 @@ if(!isset($_SESSION['u']))
               </div>
 
               <div class="tab-pane active" id="capture">
+	        <div id="file">
+		  Select File:
+		  <input type="file" onchange="updateImage(event)" />
+         	</div>
                 <div id="webcam" class="stretch r4-3"></div>
                 <div id="newSnap" style="display:none">
                   <img src="http://placehold.it/640x480" id="newImage"></img>

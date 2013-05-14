@@ -59,7 +59,6 @@ ini_set('display_errors',1);
 			$this->options = array_merge($SNAPHAX_DEFAULT_OPTIONS, $options);
 			$this->api = new SnaphaxApi($this->options);
 			$this->auth_token = false;
-                        uuid_create ( &$this->uuidobject );
 		}
 		function login() {
 			$ts = $this->api->time();
@@ -144,9 +143,7 @@ ini_set('display_errors',1);
 				$recipients = array($recipients);
 			$ts = $this->api->time();
 
-                        uuid_make ( $this->uuidobject, UUID_MAKE_V1 );
-                        uuid_export ( $this->uuidobject, UUID_FMT_STR, &$uuidstring );
-			$media_id = strtoupper($this->options['username'] . trim($uuidstring));
+			$media_id = strtoupper($this->options['username'] . trim(uuid_create()));
 
 			$this->api->debug('upload snap data', $file_data);
 			$file_data_encrypted = $this->api->encrypt($file_data);

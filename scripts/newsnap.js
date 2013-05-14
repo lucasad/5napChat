@@ -111,14 +111,14 @@ function addUser(btn)
   $(btn).popover({'html': true, 'content': '<input id="newUser" placeholder="username" onkeyup="reallyAddUser(event)"/>', 'placement': 'bottom'});
 }
 
-function reallyAddUser()
+function reallyAddUser(e)
 {
-    if(window.event.which != 13)
+    if(e.which != 13)
       return;
-    var name = $(window.event.target).val();
+    var name = $(e.target).val();
     $.post('/friend.php', {'action': 'add', 'friend': name});
     $.ajax('/friends.php?callback=writeFriends', {dataType: 'script'});
-    $(window.event.target).parent().parent().parent().remove();
+    $(e.target).parent().parent().parent().remove();
 }
 
 function deleteUser(e)
@@ -144,3 +144,24 @@ function modifyUser(e)
     $.ajax('/friends.php?callback=writeFriends', {dataType: 'script'});
   });
 }
+
+function updateImage(evt) {
+    var files = evt.target.files;
+    window.files = files;
+    if(files.length != 1)
+	return;
+
+    var f = files[0];
+    if (!f.type.match('image.*')) {
+	return;
+    }
+
+    var reader = new FileReader();
+    reader.onload = function(e) {
+	$('#newImage').attr('src', e.target.result);
+	$('#webcam').hide();
+	$('#newSnap').show();
+    };
+
+    reader.readAsDataURL(f);
+}; 
